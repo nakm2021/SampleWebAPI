@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebAPI", "SampleWebAPI\SampleWebAPI.csproj", "{D4912E26-F899-4FA3-8E9E-3BDF4D571CB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebAPI.Test", "SampleWebAPI.Test\SampleWebAPI.Test.csproj", "{902C4626-B2F4-4275-942C-120CA36273B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8171A70A-5D12-4CEA-A252-719CA7EF5682}"
+	ProjectSection(SolutionItems) = preProject
+		dotnet.yml = dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
