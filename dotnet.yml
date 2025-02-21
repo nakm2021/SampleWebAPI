@@ -20,10 +20,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies
-      run: dotnet restore ./SampleWebAPI.sln
+      run: dotnet restore ./SampleWebAPI.Test/SampleWebAPI.Test.csproj
 
     - name: Build
-      run: dotnet build ./SampleWebAPI.sln --configuration Release --no-restore
+      run: dotnet build ./SampleWebAPI.Test/SampleWebAPI.Test.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test ./SampleWebAPI.sln --configuration Release --no-restore --verbosity normal
+      run: dotnet test ./SampleWebAPI.Test/SampleWebAPI.Test.csproj --configuration Release --no-restore --verbosity normal
