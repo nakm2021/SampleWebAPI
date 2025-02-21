@@ -10,10 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      Solution_Name: SampleWebAPI.sln
-      Configuration: Release
-
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
@@ -24,10 +20,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.Solution_Name }}
+      run: dotnet restore ./SampleWebAPI.sln
 
     - name: Build
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-restore
+      run: dotnet build ./SampleWebAPI.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-restore --verbosity normal
+      run: dotnet test ./SampleWebAPI.sln --configuration Release --no-restore --verbosity normal
