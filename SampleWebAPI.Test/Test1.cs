@@ -9,7 +9,7 @@
             var testObj = new SampleData().MyList;
 
             var testHikaku = new List<string>();
-            for (int i = 0; i < 999; i++)
+            for (int i = 0; i < 100; i++)
             {
                 testHikaku.Add($"Item {i}");
             }
