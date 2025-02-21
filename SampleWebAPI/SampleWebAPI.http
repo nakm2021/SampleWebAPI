@@ -1,0 +1,6 @@
+@SampleWebAPI_HostAddress = http://localhost:5028
+
+GET {{SampleWebAPI_HostAddress}}/Sample/get-data
+Accept: application/json
+
+###
