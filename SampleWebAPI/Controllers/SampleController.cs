@@ -6,7 +6,16 @@ namespace SampleWebAPI.Controllers
     [Route("api/[controller]")]
     public class SampleController : ControllerBase
     {
-        private static List<string> _myList = new SampleData().MyList;
+        private readonly ISampleService _service;
+
+        /// <summary>
+        /// 依存性注入
+        /// </summary>
+        /// <param name="service"></param>
+        public SampleController(ISampleService service)
+        {
+            _service = service;
+        }
 
         /// <summary>
         /// 全件取得
@@ -16,8 +25,7 @@ namespace SampleWebAPI.Controllers
         [HttpGet("get-data")]
         public IActionResult GetData()
         {
-            // jsonをリターン
-            return Ok(_myList);
+            return Ok(_service.GetData());
         }
 
         /// <summary>
@@ -29,11 +37,11 @@ namespace SampleWebAPI.Controllers
         [HttpGet("get-data/{id}")]
         public IActionResult GetDataById(int id)
         {
-            if (id < 0 || id >= _myList.Count)
+            if (id < 0 || id >= _service.MyList.Count)
             {
                 return NotFound("データが見つからないです");
             }
-            return Ok(_myList[id]);
+            return Ok(_service.GetDataById(id));
         }
 
         /// <summary>
@@ -47,9 +55,9 @@ namespace SampleWebAPI.Controllers
         {
             if (string.IsNullOrEmpty(newItem))
             {
-                return NotFound("追加するデータが空です");
+                return BadRequest("追加するデータが空です");
             }
-            _myList.Add(newItem);
+            _service.AddData(newItem);
             return Ok($"データ {newItem} が追加されました");
         }
 
@@ -63,19 +71,19 @@ namespace SampleWebAPI.Controllers
         [HttpPut("update-data/{id}")]
         public IActionResult UpdateData(int id, [FromBody] string newItem)
         {
-            if (id < 0 || id >= _myList.Count)
+            if (id < 0 || id >= _service.MyList.Count)
             {
                 return NotFound("データが見つからないです");
             }
             if (string.IsNullOrEmpty(newItem))
             {
-                return NotFound("更新するデータが空です");
+                return BadRequest("更新するデータが空です");
             }
             if (string.IsNullOrWhiteSpace(newItem))
             {
                 return BadRequest("更新するデータが無効です");
             }
-            _myList[id] = newItem;
+            _service.UpdateData(id, newItem);
             return Ok($"データ {newItem} が更新されました");
         }
 
@@ -88,11 +96,11 @@ namespace SampleWebAPI.Controllers
         [HttpDelete("delete-data/{id}")]
         public IActionResult DeleteData(int id)
         {
-            if (id < 0 || id >= _myList.Count)
+            if (id < 0 || id >= _service.MyList.Count)
             {
                 return NotFound("データが見つからないです");
             }
-            _myList.RemoveAt(id);
+            _service.DeleteData(id);
             return Ok($"データ {id} が削除されました");
         }
     }

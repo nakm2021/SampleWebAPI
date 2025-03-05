@@ -1,4 +1,10 @@
+using SampleWebAPI;
+using SampleWebAPI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// DIê›íË
+builder.Services.AddSingleton<ISampleService, SampleService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
