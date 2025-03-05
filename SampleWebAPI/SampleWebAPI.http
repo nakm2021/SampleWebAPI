@@ -1,6 +1,23 @@
 @SampleWebAPI_HostAddress = http://localhost:5028
 
+### データ一覧取得
 GET {{SampleWebAPI_HostAddress}}/Sample/get-data
 Accept: application/json
 
-###
+### ID指定でデータ取得
+GET {{SampleWebAPI_HostAddress}}/Sample/get-data/1
+Accept: application/json
+
+### データ登録
+GET {{SampleWebAPI_HostAddress}}/Sample/add-data
+Content-Type: application/json
+Accept: application/json
+
+### データ更新
+PUT {{SampleWebAPI_HostAddress}}/Sample/update-data/1
+Content-Type : application/json
+Accept: application/json
+
+### データ削除
+DELETE {{SampleWebAPI_HostAddress}}/Sample/delete-data/1
+Accept: application/json
